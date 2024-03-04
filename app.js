@@ -7,17 +7,19 @@ import pg from "pg";
 const { Pool } = pg;
 
 const app = express();
+// host: "localhost",
+// port: 5432,
+// database: "ChatApp",
+// user: "postgres",
+// password: "lasha",
+
 
 app.use(bodyParser.json());
 app.use(cors());
 
 const pool = new Pool({
-  host: "localhost",
-  port: 5432,
-  database: "ChatApp",
-  user: "postgres",
-  password: "lasha",
-});
+  connectionString: process.env.POSTGRES_URL ,
+})
 
 //login
 app.post("/main/login", async (req, res, next) => {
